@@ -108,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
 	top: 0;
 	z-index: 100;
 	background-color: var(--color-bg);
-	transition: padding-block 0.35s ease, box-shadow 0.35s ease;
+	transition: padding-block 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease;
 }
 
 .site-header--scrolled {
@@ -116,11 +116,15 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: 0 2px 18px rgba(0, 0, 0, 0.09);
 }
 
-@media (max-width: 480px) {
-	.site-header--scrolled .site-header__logo img {
-		max-height: 60px;
-	}
+.site-header--hiding {
+	transition: padding-block 0.35s ease, box-shadow 0.35s ease, transform 2s ease;
+}
 
+.site-header--hidden {
+	transform: translateY(-100%);
+}
+
+@media (max-width: 480px) {
 	.site-header--scrolled .header-tel img {
 		max-height: 28px;
 	}
@@ -139,7 +143,6 @@ h1, h2, h3, h4, h5, h6 {
 	flex-wrap: nowrap;
 }
 
-.site-header__logo,
 .header-tel,
 .header-line {
 	flex: 0 1 auto;
@@ -148,7 +151,6 @@ h1, h2, h3, h4, h5, h6 {
 	cursor: pointer;
 }
 
-.site-header__logo img,
 .header-tel img,
 .header-line img {
 	width: 100%;
@@ -607,20 +609,6 @@ h1, h2, h3, h4, h5, h6 {
 		flex-wrap: wrap;
 		gap: 2px;
 		padding-block: 8px;
-	}
-
-	/* Logo on its own centered row; phone and LINE buttons sharing the
-	   row below. Much easier to tap and read on small screens. */
-	.site-header__logo {
-		flex: 1 0 100%;
-		text-align: center;
-		margin-block-end: 2px;
-	}
-
-	.site-header__logo img {
-		width: auto;
-		max-width: 150px;
-		margin-inline: auto;
 	}
 
 	.header-tel,

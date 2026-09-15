@@ -48,8 +48,24 @@
 			progressBar.style.width = max > 0 ? (window.pageYOffset / max * 100) + '%' : '0';
 		}
 
-		// ---- Sticky header compact ----
+		// ---- Sticky header: show while scrolling, fade out when idle ----
 		var header = document.querySelector('.site-header');
+		var headerHideTimer = null;
+		var headerIdleMs = 1000;
+		var headerSeenScroll = false;
+
+		function headerShow() {
+			header.classList.remove('site-header--hidden', 'site-header--hiding');
+		}
+
+		function headerFade() {
+			header.classList.add('site-header--hiding', 'site-header--hidden');
+		}
+
+		function headerArmFade() {
+			clearTimeout(headerHideTimer);
+			headerHideTimer = setTimeout(headerFade, headerIdleMs);
+		}
 
 		function updateHeader() {
 			if (!header) return;
@@ -57,6 +73,10 @@
 				header.classList.add('site-header--scrolled');
 			} else {
 				header.classList.remove('site-header--scrolled');
+			}
+			headerShow();
+			if (headerSeenScroll) {
+				headerArmFade();
 			}
 		}
 
@@ -78,6 +98,7 @@
 		window.addEventListener('scroll', function () {
 			if (!ticking) {
 				requestAnimationFrame(function () {
+					headerSeenScroll = true;
 					updateProgress();
 					updateHeader();
 					updateParallax();
