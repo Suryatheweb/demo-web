@@ -143,6 +143,7 @@ h1, h2, h3, h4, h5, h6 {
 	flex-wrap: nowrap;
 }
 
+.site-header__logo,
 .header-tel,
 .header-line {
 	flex: 0 1 auto;
@@ -151,11 +152,22 @@ h1, h2, h3, h4, h5, h6 {
 	cursor: pointer;
 }
 
+.site-header__logo img,
 .header-tel img,
 .header-line img {
 	width: 100%;
 	height: auto;
 	display: block;
+}
+
+.site-header__logo img {
+	max-height: 195px;
+	width: auto;
+}
+
+.header-tel img {
+	max-height: 100px;
+	width: auto;
 }
 
 /* ============================================================================
@@ -563,6 +575,12 @@ h1, h2, h3, h4, h5, h6 {
 	gap: 12px;
 }
 
+.site-footer__logo {
+	max-height: 195px;
+	width: auto;
+	height: auto;
+}
+
 .site-footer__copyright {
 	margin: 0;
 	font-family: var(--font-sans);
@@ -609,6 +627,21 @@ h1, h2, h3, h4, h5, h6 {
 		flex-wrap: wrap;
 		gap: 2px;
 		padding-block: 8px;
+	}
+
+	/* Logo on its own centered row; phone and LINE buttons sharing the
+	   row below. Much easier to tap and read on small screens. */
+	.site-header__logo {
+		flex: 1 0 100%;
+		text-align: center;
+		margin-block-end: 2px;
+	}
+
+	.site-header__logo img {
+		width: auto;
+		max-width: 150px;
+		max-height: 195px;
+		margin-inline: auto;
 	}
 
 	.header-tel,
